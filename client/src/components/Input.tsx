@@ -1,21 +1,36 @@
-const Input = () => {
-  return (
-    <>
-      <div className="container-fluid px-5">
-        <form className="d-flex" role="search">
-          <input
-            className="form-control me-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button className="btn btn-outline-success" type="submit">
-            Search
-          </button>
-        </form>
-      </div>
-    </>
-  );
+import { MouseEvent, ChangeEvent, useState } from "react";
+import { Alert } from "./Alert";
+import * as valid from "valid-url";
+
+interface InputProps {
+  setInput: React.Dispatch<React.SetStateAction<string>>;
+  setValidInput: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowError: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Input: React.FC<InputProps> = ({
+  setInput,
+  setValidInput,
+  setShowError,
+}) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setInput(event.target.value);
+  };
+
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault;
+  };
+
+  const linkCheck = (link: string) => {
+    alert(`In Link check`);
+    if (valid.isUri("https://www.youtube.com/")) {
+      setValidInput(true);
+      return;
+    }
+    setShowError(true);
+  };
+
+  return <></>;
 };
 
 export default Input;

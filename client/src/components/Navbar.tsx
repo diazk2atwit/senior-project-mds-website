@@ -7,7 +7,11 @@ const Navbar = () => {
       >
         <div className="container-sm">
           <h2 className="text-white fs-3 my-3">Watson MDS</h2>
-          <a className="navbar-brand" href="#">
+
+          <a
+            className="navbar-brand"
+            href="https://github.com/diazk2atwit/senior-project-mds-website"
+          >
             <img
               src="https://www.toptal.com/developers/gitignore/img/github-logo.svg"
               alt="Logo"
