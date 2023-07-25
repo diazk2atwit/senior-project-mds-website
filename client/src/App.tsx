@@ -4,9 +4,11 @@ import Logo from "./components/Logo";
 import { MouseEvent, ChangeEvent, useState } from "react";
 import { Alert } from "./components/Alert";
 import * as valid from "valid-url";
+import Display from "./components/Display";
 
 function App() {
   const [input, setInput] = useState<string>("");
+  const [text, setText] = useState<string>("");
   const [validInput, setValidInput] = useState<boolean>(false);
   const [showError, setShowError] = useState<boolean>(false);
 
@@ -17,14 +19,17 @@ function App() {
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault;
     alert(`User entered: ${input}`);
+    setText(`${input}`);
     linkCheck(`${input}`);
   };
 
   const linkCheck = (link: string) => {
     if (valid.isUri(link)) {
       setValidInput(true);
+      setShowError(false);
       return;
     }
+    setValidInput(false);
     setShowError(true);
   };
 
@@ -62,16 +67,15 @@ function App() {
           </div>
         </div>
         {/* Validation */}
-        <div className="h-100 d-flex justify-content-center align-items-center">
+        <div className="container">
           {showError && (
             <Alert onClose={() => setShowError(false)}>
-              Link is Malformed or Invalid | Add 'http://' at the beggining of
-              the link
+              Link is Malformed or Invalid | The URL should be search as
+              'http://something.com/'
             </Alert>
           )}
-          {validInput && (
-            <Alert onClose={() => setValidInput(false)}>Valid Input</Alert>
-          )}
+
+          {validInput && <Display url={text} />}
         </div>
       </div>
     </>

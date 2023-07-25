@@ -8,8 +8,8 @@ interface AlertProps {
 export const Alert = ({ children, onClose }: AlertProps) => {
   return (
     <div
-      className="alert alert-primary alert-dismissible h-100 d-flex justify-content-center align-items-center"
-      style={{ width: "40%" }}
+      className="alert alert-primary alert-dismissible"
+      style={{ width: "100%" }}
     >
       {children}
       <button
