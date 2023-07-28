@@ -1,14 +1,17 @@
-import "./App.css";
+import { MouseEvent, ChangeEvent, useState } from "react";
 import Navbar from "./components/Navbar";
 import Logo from "./components/Logo";
-import { MouseEvent, ChangeEvent, useState } from "react";
+import FileUpload from "./components/FileUpload";
 import { Alert } from "./components/Alert";
-import * as valid from "valid-url";
 import Display from "./components/Display";
+import * as valid from "valid-url";
+import "./App.css";
+import DisplayFileData from "./components/DisplayFileData";
 
 function App() {
   const [input, setInput] = useState<string>("");
   const [text, setText] = useState<string>("");
+  const [data, setData] = useState();
   const [validInput, setValidInput] = useState<boolean>(false);
   const [showError, setShowError] = useState<boolean>(false);
 
@@ -18,13 +21,14 @@ function App() {
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault;
-    alert(`User entered: ${input}`);
+    // alert(`User entered: ${input}`);
     setText(`${input}`);
     linkCheck(`${input}`);
   };
 
   const linkCheck = (link: string) => {
     if (valid.isUri(link)) {
+      setData(undefined);
       setValidInput(true);
       setShowError(false);
       return;
@@ -64,6 +68,7 @@ function App() {
             >
               Search
             </button>
+            <FileUpload setData={setData} makeUnValid={setValidInput} />
           </div>
         </div>
         {/* Validation */}
@@ -76,6 +81,8 @@ function App() {
           )}
 
           {validInput && <Display url={text} />}
+
+          {data && <DisplayFileData data={data} />}
         </div>
       </div>
     </>
