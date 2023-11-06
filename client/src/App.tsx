@@ -48,7 +48,7 @@ function App() {
         <div className="container mt-5">
           <Logo />
           <h5 className="text-center op" style={{ opacity: ".8" }}>
-            Malware Detection Scanner | Links & Files
+            Malware Detection System | Links & Files
           </h5>
         </div>
         {/* Input */}
